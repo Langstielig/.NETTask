@@ -1,0 +1,59 @@
+﻿@using PresentationLayer.Models;
+
+@model List<CompanyViewModel>
+@{
+    ViewData["Title"] = "Companies Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+					<h2>
+						<a asp-action="Index" asp-controller="Company" asp-route-companyId="@item.Company.Id">
+                            @item.Company.Name
+						</a>
+					</h2>
+                    <span>
+						<a asp-action="CompanyEditor" asp-controller="Company" asp-route-companyId="@item.Company.Id">
+							Изменить
+						</a>
+                    </span>
+                    <ul>
+                        @if(item.Projects != null)
+                        {
+                            <li>
+                                <h3>Наши проекты: </h3>
+                                @foreach(var subitem in item.Projects)
+                                {
+                                    <h3> 
+                                        <a asp-action="Index" asp-controller="Project" asp-route-projectId="@subitem.Project.Id">
+											@subitem.Project.Name
+										</a>
+									</h3>
+                                    <span>
+										<a asp-action="ProjectEditor" asp-controller="Project" asp-route-projectId="@subitem.Project.Id" asp-route-companyId="@item.Company.Id">
+											Изменить
+										</a>
+                                    </span>
+								}
+                                <span>
+                                    <a asp-action="ProjectEditor" asp-controller="Project" asp-route-projectId="0" asp-route-companyId="@item.Company.Id">
+                                        Добавить проект
+                                    </a>
+                                </span>
+							</li>
+                        }
+                    </ul>
+                </li>
+            }
+            <h3>
+                <a asp-action="CompanyEditor" asp-controller="Company" asp-route-companyId="0">
+                    Добавить компанию
+                </a>
+            </h3>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model PresentationLayer.Models.UserEditModel
+
+<form action="/User/SaveUser" method="post">
+	<h3>Изменить информацию о пользователе</h3>
+
+	<input name="Id" type="hidden" value="@Model.Id"/>
+	<input name="CompanyId" value="@Model.CompanyId" placeholder="Id Компании"/> <br />
+	<input name="ProjectId"/>
+	<input name="Name" value="@Model.Name" placeholder="Имя"/> <br />
+	<input name="Surname" value="@Model.Surname" placeholder="Фамилия"/> <br />
+	<input name="Description" value="@Model.Description" placeholder="Почта"/> <br />
+
+	<input type="submit" />
+</form>

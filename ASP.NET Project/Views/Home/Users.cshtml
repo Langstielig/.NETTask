@@ -1,0 +1,49 @@
+﻿@using PresentationLayer.Models;
+
+@model List<UserViewModel>
+@{
+    ViewData["Title"] = "Users Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <h2>
+                        <a asp-action="Index" asp-controller="User" asp-route-userId="@item.User.Id">
+                            @item.User.Name @item.User.Surname
+                        </a>
+                    </h2>
+                    <span>
+                        <a asp-action="UserEditor" asp-controller="User" asp-route-userId="@item.User.Id">
+                            Изменить
+                        </a>
+                    </span>
+                    <ul>
+                        @if (item.Projects != null)
+                        {
+                            <li>
+                                <h3>В каких проектах участвовал/участвует </h3>
+                                @foreach (var subitem in item.Projects)
+                                {
+                                    <h3>
+                                        <a asp-action="Index" asp-controller="Project" asp-route-projectId="@subitem.Project.Id">
+                                            @subitem.Project.Name
+                                        </a>
+                                    </h3>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            <h3>
+                <a asp-action="UserEditor" asp-controller="User" asp-route-userId="0">
+                    Добавить пользователя
+                </a>
+            </h3>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿@model PresentationLayer.Models.CompanyEditModel
+
+<form action="/Company/SaveCompany" method="post">
+	<h3>Изменить информацию о компании</h3>
+	
+	<input name="Id" type="hidden" value="@Model.Id"/> 
+	<input name="Name" value="@Model.Name" placeholder="Название"/> <br />
+	<textarea name="Description" placeholder="Описание">@Model.Description</textarea> <br />
+
+	<input type="submit" />
+</form>
